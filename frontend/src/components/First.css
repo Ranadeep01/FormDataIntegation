@@ -1,0 +1,22 @@
+.form-first{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+.form{
+    margin: 50px;
+    width: 40%;
+    padding: 80px;
+    background-color:lightblue;
+    border-radius: 20px;
+}
+
+h1{
+    text-align: center;
+    padding: 20px;
+}
+
+.sign-up:hover{
+    cursor: pointer;
+}

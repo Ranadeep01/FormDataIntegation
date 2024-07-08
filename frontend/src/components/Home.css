@@ -1,0 +1,52 @@
+.home-dropdown{
+    display: flow-root;
+
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px;
+    background-color: red;
+    animation: btn-clicked 1s; /* Apply the animation */
+    animation-fill-mode: forwards; 
+}
+
+@keyframes btn-clicked{
+    from{
+        background-color: red;
+        transform: translateY(100%);
+    }
+    to{
+        background-color: pink;
+        transform: translateY(0%);
+    }
+}
+
+.btn-clicked:active{
+    background-color:darkblue;
+    display: grid;
+    align-items: center;
+}
+
+
+.add{
+    float: right;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+
+tr,td,table,th{
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.btn-search{
+    
+}

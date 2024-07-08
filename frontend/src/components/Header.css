@@ -1,0 +1,16 @@
+.btn-add{
+
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: aqua;
+
+}
+.btn-add:hover {
+    background-color:aliceblue;
+}
+btn-add:active{
+    background-color:azure;
+}
