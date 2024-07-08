@@ -68,7 +68,6 @@ export default function Home({edit, setEdit}) {
   return (
     <div>
       <Header />
-        <input type='text' className='btn-search' placeholder='search by work' value={search} />
       <div className="body">
       <table>
 
