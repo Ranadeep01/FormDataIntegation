@@ -12,15 +12,19 @@ export default function Home({edit, setEdit}) {
   const [arr, setArr] = useState([])
   const [tmpData, setTmpData] = useState()
   const isFirstRun = useRef(true);  
+  const [del, Setdel] = useState(0)
 
   const navigate = useNavigate()
 
   const handleDelete=(key)=>{
     //console.log('key', key._id)
     //console.log('=>', localStorage.getItem(key), key, t)
+
+    Setdel(1)
+
     axios.delete(`http://localhost:8000/delete/${key._id}`)
     .then(()=>{
-      window.location.reload();
+      // window.location.reload();
       console.log('data deleted succesfully.. from homw.js')})
     .catch((err)=>{console.log('deletion failed.. from homw.js', err)})
 
@@ -62,7 +66,8 @@ export default function Home({edit, setEdit}) {
           console.log('home.js - error found..', err);
         });
     }
-  }, []);
+    Setdel(0)
+  }, [del]);
 
 
   return (

@@ -6,7 +6,7 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
-export default function Input() {
+export default function Input() { 
 
   //console.log('edit is : ', edit)
 
