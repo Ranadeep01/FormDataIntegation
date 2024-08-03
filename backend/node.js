@@ -7,15 +7,15 @@ const { Script } = require('vm');
 const { url } = require('inspector');
 const  app = express();
 const mongoose = require('mongoose');
-const { error, Console } = require('console');
-const cors = require('cors')
+const { error, Console, log } = require('console');
+const cors = require('cors');
+const { type } = require('os');
 
 app.use(cors()) //middle-ware  
 
 mongoose.connect('mongodb://127.0.0.1:27017/ranaa')
 .then(()=>{console.log('Database Connection successfull..')})
 .catch((err)=>{console.log("datbase connection unsuccesfull..")})
-
 
 //create schema
 
@@ -28,14 +28,14 @@ const schema = new mongoose.Schema({
     total : {type:Number, required:true, unique:false}
 })
 
+const schemaLogin = new mongoose.Schema({
+    email: {type: email, unique: true, require: true}
+})
+
 const model = mongoose.model('datas', schema)
-//console.log('model', model)
+//console.log('model', model)model
 
-
-
-
-
-
+const modelLogin = mongoose.model('login', schemaLogin)
 
 {/*const newUser = new model({
     id:1,
@@ -97,31 +97,51 @@ app.post('/updated/:id', async (req, res)=>{
         //console.error('Error updating data:', error);
         res.status(500).send('Internal Server Error');
     }
+})
+
+// app.post('/add', async (req, res) => {
+//     //console.log('req.body', req.body)
+//     const {work, rate, hours, date, season, total} = req.body
+//     try{
+//         const user = new model({
+//             work : work,
+//             rate : rate,
+//             hours : hours,
+//             date : date,
+//             season : season,
+//             total : (total)
+//         })
+//         await user.save()
+//         .then(()=>{console.log('data insertion sucessful..')})
+//     .catch((err)=>{console.log('data insertion failed..', )})
+        
+//         return res.status(200).send(`Added a new record of ${user.work} to database`)
+//     }
+//     catch(err){
+//         return res.status(500).send('Data insertion failed : ')
+//     }
+// });
+
+
+app.post('/add', (req, res)=>{
+    const record = req.body
+    try{
+        const newRecord = new model({
+            work : record.work,
+            rate : record.rate,
+            hours : record.hours,
+            date : record.date,
+            season : record.season,
+            total : (record.total)
+        })
+        newRecord.save().then(()=>{console.log('Record saved successfully')})
+    }
+    catch(err){
+        console.log('Record saving failed..', err)
+    }
 
 })
 
-app.post('/add', async (req, res) => {
-    //console.log('req.body', req.body)
-    const {work, rate, hours, date, season, total} = req.body
-    try{
-        const user = new model({
-            work : work,
-            rate : rate,
-            hours : hours,
-            date : date,
-            season : season,
-            total : (total)
-        })
-        await user.save()
-        .then(()=>{console.log('data insertion sucessful..')})
-    .catch((err)=>{console.log('data insertion failed..', )})
-        
-        return res.status(200).send(`Added a new record of ${user.work} to database`)
-    }
-    catch(err){
-        return res.status(500).send('Data insertion failed : ')
-    }
-});
 
 app.delete('/delete/:id', async (req, res)=>{
     try{
